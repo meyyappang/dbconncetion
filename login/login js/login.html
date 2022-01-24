@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+    <div id="d1">
+        <form onsubmit="submitlogin(event)" name="userform">
+            <input type="text" name="username" placeholder="username"><br>
+            <input type="password" name="pwd" placeholder="password"><br>
+            <button>Login</button>
+
+        </form>
+    </div>
+    <script>
+        function submitlogin(e){
+            e.preventDefault();
+            var newlogin={
+                username:document.userform.username.value,
+                password:document.userform.pwd.value
+            }
+            axios.post('http://localhost:3032/newlogin',newlogin)
+            .then((res)=>{
+                if(typeof(res.data)==='object'){
+                    newlogin.setAttribute('style','color:green')
+                    newlogin.innerHTML='welcome'+res.data.username
+                }
+                else{
+                    newlogin.setAttribute('style','color:red')
+                    newlogin.innerHTML=res.data
+                }
+            })
+            .catch(function(err){
+                console.log("error",err);
+            })
+        }
+    </script>
+    
+</body>
+</html>

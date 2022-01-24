@@ -1,0 +1,10 @@
+html
+    head
+    body
+    each val in details
+        img(src=`/${val.profilepic}`,width="100")
+        h1 FIRST NAME: #{val.name}
+        h1 LAST NAME:  #{val.lastname}
+        h1 AGE: #{val.age}
+        button Update
+        

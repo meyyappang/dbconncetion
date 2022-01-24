@@ -1,0 +1,27 @@
+doctype html 
+html 
+   head 
+       title Hello Gopi 
+   body 
+       p(style="color:red") Meyyappan G
+       h1(style="color:yellow") Student Table
+       table(border="2" cellpadding="20")
+           thead
+               th FirstName 
+               th LastName
+               th Age 
+               th Delete
+               th Image
+           each val in allstudents 
+               tr 
+                   td 
+                       a(href=`/stds/${val._id}`) #{val.name}
+
+                   td #{val.lastname}
+                   td #{val.age}
+                   td 
+                       a(href=`/deleteStudent/${val._id}`) Delete
+                   td 
+                       img(src=`${val.profilepic}`  width="100")
+                       br
+                       a(href=`/updateprofilepic/${val._id}`) Update Profile Picture    
